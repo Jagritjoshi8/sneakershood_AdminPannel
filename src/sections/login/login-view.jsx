@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -21,27 +22,49 @@ import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
+const ErrorMessage = ({ message }) => (
+  <Typography variant="body2" sx={{ color: 'red', textAlign: 'center', mt: 2 }}>
+    {message}
+  </Typography>
+);
+ErrorMessage.propTypes = {
+  message: PropTypes.string.isRequired, // Assuming message is a string and is required
+};
+// -----------------------------------------------------------------------
 
 export default function LoginView() {
   const theme = useTheme();
 
   const router = useRouter();
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
-    router.push('/dashboard');
+    if (email === 'jagritjoshi268@gmail.com' && password === 'Adminjag8@') {
+      router.push('/dashboard');
+    } else {
+      setLoginError('Invalid Credentials, Please Try Again');
+    }
   };
 
   const renderForm = (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField
+          name="email"
+          label="Email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
         <TextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -147,6 +170,7 @@ export default function LoginView() {
           </Divider>
 
           {renderForm}
+          {loginError ? <ErrorMessage message={loginError} /> : null}
         </Card>
       </Stack>
     </Box>
