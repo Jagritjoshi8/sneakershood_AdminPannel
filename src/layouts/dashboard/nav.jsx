@@ -80,10 +80,10 @@ export default function Nav({ openNav, onCloseNav }) {
         />
 
         <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h6">Get more?</Typography>
+          <Typography variant="h6">Want Help?</Typography>
 
           <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
-            From only $69
+            Sneakers Hood Bot Here...
           </Typography>
         </Box>
 
@@ -93,7 +93,7 @@ export default function Nav({ openNav, onCloseNav }) {
           variant="contained"
           color="inherit"
         >
-          Upgrade to Pro
+          Coming Soon
         </Button>
       </Stack>
     </Box>
